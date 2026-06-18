@@ -1,0 +1,57 @@
+Project Overview:
+Rotikaya Media Sdn. Bhd. Sales Tracking and Management System is a Laravel-based web application for managing sales records, invoices, payments, reminders, reporting, and role-based operations for three core roles (admin, accountant, sales staff). The system replaces spreadsheet/manual workflows with centralized records, dashboard visibility, automated overdue reminders, and auditable financial operations. All implementation and future changes must stay aligned with the documented requirements and acceptance criteria.
+
+Reference Documents (read first before requirement-sensitive changes):
+- C:\Users\izzat\Desktop\FYP2\FYP1 IZZAT .pdf
+- C:\Users\izzat\Desktop\FYP2\SRS_IZZAT AZZIM_A22MJ5014.pdf
+- C:\Users\izzat\Desktop\FYP2\STD_IZZAT AZZIM_A22MJ5014.pdf
+- C:\Users\izzat\Desktop\FYP2\docs\PROJECT_SPEC.md
+- C:\Users\izzat\Desktop\FYP2\docs\GAP_ANALYSIS.md
+- C:\Users\izzat\Desktop\FYP2\docs\IMPLEMENTATION_ROADMAP.md
+
+Requirements Authority:
+- When requirements conflict, use this order: SRS > FYP1 > STD.
+- `docs/PROJECT_SPEC.md` is the operational single source of truth for consolidated requirements.
+
+Design System:
+- Visual theme: dark-first dashboard UI.
+- Primary colors:
+  - Background: #0a0a0a / #0f0f0f
+  - Surface: #1e1e1e
+  - Border: #262626 / #321315
+  - Primary accent: #c0392b / #8B0000 / #df1f25
+  - Text primary: #ffffff / #f4f5f7
+  - Text muted: #9aa0ad / gray-300/400
+- Typography:
+  - Sans: Inter
+  - Display: Space Grotesk
+  - Monospace: JetBrains Mono
+- Layout:
+  - Fixed left sidebar navigation by role
+  - Main content cards with rounded corners and strong contrast
+  - Consistent spacing and hierarchy for forms/tables/charts
+
+User Roles and Permissions:
+- Admin:
+  - Full dashboard access
+  - Manage users and role assignments
+  - Access invoices, payments, reports, settings, permissions matrix
+- Accountant:
+  - Access dashboard, invoices, payments, reports
+  - Record payments, generate invoices/reports, trigger reminders
+  - No user/permission administration
+- Sales Staff:
+  - Access sales dashboard, invoices (read status), clients, and sale recording
+  - No access to payments/reports/user administration
+
+Accessibility and Contrast Rule (strict):
+- Never use dark text on dark backgrounds.
+- Ensure all text/background combinations meet readable contrast (target WCAG AA minimum).
+- Validate focus states, hover states, and placeholder visibility on dark surfaces.
+- If uncertain, prefer lighter text tokens on dark UI components.
+
+Implementation Guardrails:
+- Do not silently change requirement behavior without updating `docs/PROJECT_SPEC.md`.
+- For each feature change, reference FR/UC/TC IDs in comments, PR notes, or commit notes.
+- Keep route/middleware access consistent with role permissions above.
+- Preserve auditability for financial and configuration actions.

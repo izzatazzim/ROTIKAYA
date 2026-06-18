@@ -19,9 +19,18 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/app/backups/*
 /storage/pail
 /vendor
 _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Project-specific: keep academic documents, reference screenshots, binaries
+# and stray/duplicate artifacts out of the public submission repo.
+*.pdf
+/LHDN_invoice.png
+/composer.phar
+/NUL
+/FYP2/

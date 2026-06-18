@@ -1,0 +1,40 @@
+# Keep the build context small and never ship local/dev artifacts or secrets.
+.git
+.gitignore
+.github
+
+# Local secrets — env vars are set in the Railway dashboard instead.
+.env
+.env.*
+!.env.production.example
+
+# Dependencies are installed inside the image.
+/vendor
+/node_modules
+
+# Built assets are produced in the image (Dockerfile stage 1).
+/public/build
+/public/hot
+/public/storage
+
+# Local SQLite dev database — the live DB lives on the Railway volume.
+/database/*.sqlite
+
+# Caches, logs and test artifacts.
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/app/backups/*
+/bootstrap/cache/*.php
+.phpunit.result.cache
+/.phpunit.cache
+
+# Editor / OS noise and local FYP documents that don't belong in the image.
+/.idea
+/.vscode
+/.zed
+*.pdf
+*.png
+!public/images/*.png
+*.log

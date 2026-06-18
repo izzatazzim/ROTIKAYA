@@ -6,6 +6,153 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@layer base {
+    :root {
+        /* Surfaces */
+        --bg: #0a0a0a;
+        --surface: #141414;
+        --surface-elevated: #1c1c1c;
+
+        /* Borders */
+        --border-subtle: rgba(255, 255, 255, 0.06);
+        --border-defined: rgba(255, 255, 255, 0.1);
+
+        /* Text */
+        --text-primary: #fafafa;
+        --text-secondary: #a1a1a1;
+        --text-tertiary: #6b6b6b;
+
+        /* Brand + semantic */
+        --brand-red: #dc2626;
+        --brand-red-dark: #991b1b;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --info: #3b82f6;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text-primary);
+        min-height: 100vh;
+        font-family: 'Inter', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+}
+
+@layer components {
+    /* ---- Page heading ---------------------------------------------------- */
+    .rtk-title {
+        @apply text-2xl font-semibold tracking-tight text-[#fafafa];
+    }
+
+    /* ---- Cards ----------------------------------------------------------- */
+    .rtk-card {
+        @apply rounded-xl border border-white/[0.06] bg-[#141414] p-6 text-[#fafafa];
+    }
+
+    /* Subtle top inner highlight — gives key panels a touch of native-app depth. */
+    .shadow-inner-light {
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+    }
+
+    /* ---- Form controls --------------------------------------------------- */
+    .rtk-input,
+    .rtk-select,
+    .rtk-textarea {
+        @apply w-full rounded-lg border border-white/10 bg-white/[0.02] px-3.5 py-2.5 text-sm text-[#fafafa]
+               placeholder:text-[#6b6b6b]
+               focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/30;
+    }
+
+    /* ---- Buttons --------------------------------------------------------- */
+    .rtk-btn {
+        @apply inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white
+               transition-colors hover:bg-red-700
+               focus:outline-none focus:ring-2 focus:ring-red-500/40;
+    }
+
+    .rtk-btn-secondary {
+        @apply inline-flex items-center justify-center rounded-lg border border-white/10 bg-white/5 px-4 py-2
+               text-sm font-medium text-gray-300 transition-colors hover:bg-white/10;
+    }
+
+    /* ---- Tables ---------------------------------------------------------- */
+    .rtk-table-wrap {
+        @apply overflow-x-auto rounded-xl border border-white/[0.06] bg-[#141414];
+    }
+
+    .rtk-table {
+        @apply min-w-full text-sm text-gray-300;
+    }
+
+    .rtk-table .mono {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 12px;
+    }
+
+    .rtk-table thead tr {
+        @apply border-b border-white/[0.06] text-left;
+    }
+
+    .rtk-table th {
+        @apply px-4 py-3 text-xs font-medium uppercase tracking-wider text-[#6b6b6b];
+    }
+
+    .rtk-table td {
+        @apply border-b border-white/[0.04] px-4 py-3;
+    }
+
+    .rtk-table tbody tr:last-child td {
+        @apply border-b-0;
+    }
+
+    .rtk-table tbody tr:hover {
+        @apply bg-white/[0.02];
+    }
+
+    /* ---- Status pills ---------------------------------------------------- */
+    .rtk-badge {
+        @apply inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium;
+    }
+
+    .rtk-badge-paid    { @apply bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20; }
+    .rtk-badge-overdue { @apply bg-red-500/10 text-red-400 ring-1 ring-red-500/20; }
+    .rtk-badge-partial { @apply bg-amber-500/10 text-amber-400 ring-1 ring-amber-500/20; }
+    .rtk-badge-coming  { @apply bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/20; }
+    .rtk-badge-await   { @apply bg-gray-500/10 text-gray-400 ring-1 ring-gray-500/20; }
+
+    /* ---- Date picker indicator on dark inputs ---------------------------- */
+    input[type='date']::-webkit-calendar-picker-indicator {
+        filter: invert(0.9);
+        opacity: 0.7;
+    }
+
+    select option {
+        background-color: #141414;
+        color: #fafafa;
+    }
+}
+
+@layer base {
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        @apply outline-none ring-2 ring-red-500/50 ring-offset-2 ring-offset-[#0a0a0a];
+    }
+
+    [x-cloak] { display: none !important; }
+
+    /* Responsive: force-show on md+ even when Alpine adds .hidden */
+    @media (min-width: 768px) {
+        .md\:\!block { display: block !important; }
+    }
 }

@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'whatsapp' => [
+        'driver' => env('WHATSAPP_DRIVER', 'simulator'),
+        'simulate_mode' => env('WHATSAPP_SIMULATE_MODE', 'always_success'),
+        'simulate_failure_rate' => (int) env('WHATSAPP_SIMULATE_FAILURE_RATE', 30),
+        // Future production fields (not used in PSM 2 simulator mode).
+        'api_url' => env('WHATSAPP_API_URL'),
+        'api_token' => env('WHATSAPP_API_TOKEN'),
+        'business_phone_id' => env('WHATSAPP_BUSINESS_PHONE_ID'),
+        'template_name' => env('WHATSAPP_TEMPLATE_NAME', 'payment_reminder'),
+    ],
+
 ];
