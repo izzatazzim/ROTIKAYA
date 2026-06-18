@@ -26,7 +26,9 @@ COPY public ./public
 RUN npm run build
 
 # ---- Stage 2: PHP application runtime --------------------------------------
-FROM php:8.3-cli AS app
+# PHP 8.4 to match composer.lock: the locked Symfony 8 components require
+# php >=8.4. (composer.json allows ^8.3, but the lockfile was resolved on 8.4.)
+FROM php:8.4-cli AS app
 
 # install-php-extensions makes installing native extensions one line each.
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
