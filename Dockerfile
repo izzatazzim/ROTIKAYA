@@ -9,10 +9,17 @@
 # ---------------------------------------------------------------------------
 
 # ---- Stage 1: compile CSS/JS with Vite ------------------------------------
-FROM node:20-alpine AS assets
+# Debian (glibc) + Node 22: Vite 8 needs Node >=20.19 / >=22.12, and a glibc
+# base avoids the musl native-binary pitfalls that bite Rollup / esbuild /
+# Tailwind v4 (@tailwindcss/oxide).
+FROM node:22-bookworm-slim AS assets
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm ci
+# `npm ci` is reproducible, but a lockfile generated on Windows/macOS can omit
+# the Linux-specific optional native binaries (@rollup/*-linux-*,
+# @tailwindcss/oxide-*, esbuild). If that happens, drop the lockfile and do a
+# fresh platform-correct resolve so the right binaries are installed.
+RUN npm ci || (rm -rf node_modules package-lock.json && npm install)
 COPY vite.config.js ./
 COPY resources ./resources
 COPY public ./public
