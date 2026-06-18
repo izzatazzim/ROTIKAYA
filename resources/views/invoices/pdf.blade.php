@@ -108,7 +108,7 @@
     </tr>
     <tr>
         <td class="pdf-remark" style="vertical-align:top; padding:0 8px 5px 0;">3.</td>
-        <td class="pdf-remark" style="padding:0 0 5px 0;">All Cheque payments to be made via crossed cheque or Telegraphic Transfer to ROTIKAYA MEDIA SDN BHD (CIMB ACC 8006974938).</td>
+        <td class="pdf-remark" style="padding:0 0 5px 0;">All Cheque payments to be made via crossed cheque or Telegraphic Transfer to ROTIKAYA MEDIA SDN BHD (bank account details available upon request).</td>
     </tr>
 </table>
 <div class="pdf-gap-8">&nbsp;</div>
